@@ -1,13 +1,20 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
-        cnt = 0;
-        neg=1
-        while x>0:
-            x = x-neg;
-            cnt = cnt+1
-            neg = neg + 2
-            if (x-neg)<0:
-                break;
-                
-        
-        return cnt
+        if x==1:
+            return 1
+        l = 0
+        h = x//2
+        mid = (l+h)//2
+
+        ans = -1
+        while l<=h:
+            square = mid * mid
+            if square==x:
+                return mid
+            if square<x:
+                ans = mid
+                l = mid + 1
+            elif square>x:
+                h = mid-1
+            mid = (l+h)//2
+        return ans
